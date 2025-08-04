@@ -1,24 +1,12 @@
-// Last updated: 8/4/2025, 9:28:16 PM
+// Last updated: 8/4/2025, 9:41:32 PM
 class Solution {
-    public boolean checkIfExist(int[] arr) {
-        boolean ans = false;
-        int count=0;
-        for(int i=0; i<arr.length; i++){
-            if(arr[i]==0){
-                count++;
-            }
-            if(count%2==0 && count != 0){
-                ans = true;
-                return ans;
-            }
+    public int getCommon(int[] nums1, int[] nums2) {
+        int i = 0, j = 0;
+        while (i < nums1.length && j < nums2.length) {
+            if (nums1[i] == nums2[j]) return nums1[i];
+            else if (nums1[i] < nums2[j]) i++;
+            else j++;
         }
-        for(int i=0; i<arr.length; i++){
-            for(int j=0; j<arr.length;j++){
-                if(arr[i]*2 == arr[j] && arr[i] != 0){
-                    ans = true;
-                }
-            }
-        }
-        return ans;
+        return -1;
     }
 }
