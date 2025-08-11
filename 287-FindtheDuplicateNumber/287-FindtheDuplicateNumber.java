@@ -1,22 +1,10 @@
-// Last updated: 8/11/2025, 10:48:22 PM
+// Last updated: 8/11/2025, 10:57:29 PM
 class Solution {
-    public String reverseOnlyLetters(String s) {
-        char[] arr = s.toCharArray();
-        int left = 0;
-        int right = s.length()-1;
-        while(left<right){
-            if(!Character.isLetter(arr[left])){
-                left++;
-            }else if(!Character.isLetter(arr[right])){
-                right--;
-            }else{
-                char temp = arr[right];
-                arr[right] = arr[left];
-                arr[left] = temp;
-                left++;
-                right--;
-            }
+    public int[] sortedSquares(int[] nums) {
+        for(int i=0; i<nums.length; i++){
+            nums[i] = nums[i]*nums[i];
         }
-        return new String(arr);
+        Arrays.sort(nums);
+        return nums;
     }
 }
