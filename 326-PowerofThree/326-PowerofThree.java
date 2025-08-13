@@ -1,4 +1,4 @@
-// Last updated: 8/7/2025, 10:21:21 AM
+// Last updated: 8/13/2025, 10:17:19 AM
 class Solution {
     public boolean isPowerOfThree(int n) {
         boolean ans = false;
