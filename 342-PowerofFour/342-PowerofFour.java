@@ -1,4 +1,4 @@
-// Last updated: 8/7/2025, 10:22:38 AM
+// Last updated: 8/15/2025, 9:43:52 AM
 class Solution {
     public boolean isPowerOfFour(int n) {
         boolean ans = false;
