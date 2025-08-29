@@ -1,4 +1,4 @@
-// Last updated: 8/27/2025, 12:06:21 PM
+// Last updated: 8/29/2025, 7:54:49 PM
 import java.util.*;  
 
 class Solution {
@@ -8,26 +8,10 @@ class Solution {
             return result;
         }
 
-        Stack<TreeNode> stack = new Stack<>();
-        TreeNode prev = null;
-
-        while (!stack.isEmpty() || root != null) {
-            
-            while (root != null) {
-                stack.push(root);
-                root = root.left;
-            }
-
-            TreeNode node = stack.peek();
-
-            if (node.right == null || node.right == prev) {
-                result.add(node.val);
-                stack.pop();
-                prev = node;
-            } else {
-                root = node.right;
-            }
-        }
+    
+        result.addAll(postorderTraversal(root.left));
+        result.addAll(postorderTraversal(root.right));
+        result.add(root.val);
 
         return result;
     }
