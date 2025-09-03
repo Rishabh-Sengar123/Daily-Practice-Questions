@@ -1,25 +1,21 @@
-// Last updated: 9/3/2025, 11:20:53 AM
-import java.util.*;
-
+// Last updated: 9/3/2025, 11:35:45 AM
 class Solution {
-    public int rob(int[] nums) {
-        int[] dp = new int[nums.length];
-        Arrays.fill(dp, -1);
-        return robber(nums, 0, dp);
-    }
+    public int rob(int[] arr) {
+      int [] dp=new int [arr.length];
+      Arrays.fill(dp,-1);
+      return Robber(arr,0,dp);
+      
+	}
+	public static int Robber(int [] arr,int i,int[] dp) {
+		if(i>=arr.length) {
+			return 0;
+		}
+		if(dp[i]!=-1) {
+			return dp[i];
+		}
+		int rob=arr[i]+Robber(arr,i+2,dp);
+		int Dont_rob=Robber(arr,i+1,dp);
+		return dp[i]=Math.max(rob, Dont_rob);
+		}
 
-    public static int robber(int[] nums, int i, int[] dp) {
-        if (i >= nums.length) {
-            return 0;
-        }
-        if (dp[i] != -1) {  
-            return dp[i];
-        }
-
-        int rob = nums[i] + robber(nums, i + 2, dp);
-        int dontRob = robber(nums, i + 1, dp);
-
-        dp[i] = Math.max(rob, dontRob);
-        return dp[i];
-    }
 }
