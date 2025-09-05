@@ -1,4 +1,8 @@
-// Last updated: 9/5/2025, 2:54:10 PM
+// Last updated: 9/5/2025, 2:54:59 PM
+/*
+Author : Rishabh Sengar
+*/
+
 class Solution {
     public int smallestIndex(int[] nums) {
         for(int i=0; i<nums.length ; i++){
