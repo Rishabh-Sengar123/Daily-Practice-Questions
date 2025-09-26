@@ -1,4 +1,4 @@
-// Last updated: 9/27/2025, 12:31:42 AM
+// Last updated: 9/27/2025, 12:33:12 AM
 class Solution {
     public boolean canPlaceFlowers(int[] nums, int n) {
         boolean ans = false;
@@ -13,7 +13,11 @@ class Solution {
             }
 
         }
-        return n <= 0; 
+        if(n<=0){
+            return true;
+        }else{
+            return false;
+        }
     }
 
 
@@ -35,5 +39,4 @@ class Solution {
 
 //         return n <= 0;  
 //     }
-
 // }
