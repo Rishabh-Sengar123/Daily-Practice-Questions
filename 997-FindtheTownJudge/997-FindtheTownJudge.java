@@ -1,4 +1,4 @@
-// Last updated: 9/27/2025, 12:12:21 AM
+// Last updated: 9/27/2025, 12:18:05 AM
 class Solution {
     public int findJudge(int n, int[][] trust) {
 
