@@ -1,73 +1,18 @@
-// Last updated: 9/29/2025, 1:38:16 PM
+// Last updated: 9/29/2025, 2:14:33 PM
 class Solution {
-    public int diagonalSum(int[][] mat) {
-        int sum = 0;
-        int has = mat.length;
-        int ans = has/2;
-        for(int i=0; i<mat.length; i++){
-            
-            sum += mat[i][i];
+    public void rotate(int[][] matrix) {
+        int leng =  matrix.length;
+        int hello[][] = new int[leng][leng];
+        for(int i=0; i<matrix.length; i++){
+            for(int j=0; j<matrix[0].length; j++){
+                hello[i][j] = matrix[(leng-1)-j][i];
+            }
+        }
+        for(int i=0; i<leng; i++){
+            for(int j=0; j<leng; j++){
+                matrix[i][j] = hello[i][j];
+            }
+        }
 
-        }
-        for(int i=mat.length-1; i>=0; i--){
-           
-            sum += mat[i][(has-1)-i];
-            
-            
-        }
-        if(has%2 != 0){
-            sum -= mat[ans][ans];
-        }
-        return sum;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
