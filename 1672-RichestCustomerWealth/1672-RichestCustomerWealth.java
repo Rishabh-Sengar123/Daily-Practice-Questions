@@ -1,18 +1,73 @@
-// Last updated: 9/29/2025, 1:13:19 PM
+// Last updated: 9/29/2025, 1:38:16 PM
 class Solution {
-    public int maximumWealth(int[][] accounts) {
+    public int diagonalSum(int[][] mat) {
         int sum = 0;
-        int ans = 0;
-        for(int i=0; i<accounts.length; i++){
-            for(int j=0; j<accounts[0].length; j++){
-                sum += accounts[i][j];
-
-               
+        int has = mat.length;
+        int ans = has/2;
+        for(int i=0; i<mat.length; i++){
             
-            }
-             ans = Math.max(ans, sum);
-            sum = 0;
+            sum += mat[i][i];
+
         }
-        return ans;
+        for(int i=mat.length-1; i>=0; i--){
+           
+            sum += mat[i][(has-1)-i];
+            
+            
+        }
+        if(has%2 != 0){
+            sum -= mat[ans][ans];
+        }
+        return sum;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
