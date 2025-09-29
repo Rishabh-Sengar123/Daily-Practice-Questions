@@ -1,18 +1,32 @@
-// Last updated: 9/29/2025, 2:14:50 PM
+// Last updated: 9/29/2025, 3:03:21 PM
 class Solution {
-    public void rotate(int[][] matrix) {
-        int leng =  matrix.length;
-        int hello[][] = new int[leng][leng];
-        for(int i=0; i<matrix.length; i++){
-            for(int j=0; j<matrix[0].length; j++){
-                hello[i][j] = matrix[(leng-1)-j][i];
+    public int[] shortestToChar(String s, char c) {
+        int count = 0;
+        int[] ans = new int[s.length()];
+        for(int i=0; i<s.length(); i++){
+            if(s.charAt(i) == c){
+                count++;
             }
-        }
-        for(int i=0; i<leng; i++){
-            for(int j=0; j<leng; j++){
-                matrix[i][j] = hello[i][j];
-            }
-        }
 
+        }
+        int[] arr = new int[count];
+        int k = 0;
+        for(int i=0; i<s.length(); i++){
+            if(s.charAt(i) == c){
+                arr[k] = i; 
+                k++;
+            }
+        }
+        
+        int sum = 0;
+        for(int i=0; i<s.length(); i++){
+            int answer = Integer.MAX_VALUE;
+            for(int j = 0; j<count; j++){
+                sum = Math.abs(arr[j]-i);
+                answer = Math.min(sum, answer);
+            }
+            ans[i] = answer;
+        }
+        return ans;
     }
 }
