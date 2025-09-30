@@ -1,22 +1,19 @@
-// Last updated: 9/30/2025, 11:04:30 PM
+// Last updated: 9/30/2025, 11:09:18 PM
 class Solution {
-    public int characterReplacement(String s, int k) {
-        int[] count = new int[26];
-        int left = 0, maxFreq = 0, maxLength = 0;
+    public int longestOnes(int[] nums, int k) {
+        int left = 0, zeroCount = 0, maxLen = 0;
 
-        for (int right = 0; right < s.length(); right++) {
-            char c = s.charAt(right);
-            count[c - 'A']++;
-            maxFreq = Math.max(maxFreq, count[c - 'A']);
+        for (int right = 0; right < nums.length; right++) {
+            if (nums[right] == 0) zeroCount++;
 
-            while ((right - left + 1) - maxFreq > k) {
-                count[s.charAt(left) - 'A']--;
+            while (zeroCount > k) {
+                if (nums[left] == 0) zeroCount--;
                 left++;
             }
 
-            maxLength = Math.max(maxLength, right - left + 1);
+            maxLen = Math.max(maxLen, right - left + 1);
         }
 
-        return maxLength;
+        return maxLen;
     }
 }
