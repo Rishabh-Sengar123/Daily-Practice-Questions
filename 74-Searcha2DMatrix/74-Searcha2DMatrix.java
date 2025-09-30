@@ -1,40 +1,17 @@
-// Last updated: 9/29/2025, 9:04:52 PM
+// Last updated: 9/30/2025, 12:14:47 PM
 class Solution {
-    public List<Integer> spiralOrder(int[][] matrix) {
-        List<Integer> list = new ArrayList<>();
-        int length = matrix.length;
-        int col = matrix[0].length;
-
-        int top = 0, bottom = length - 1;
-        int left = 0, right = col - 1;
-
-        while (top <= bottom && left <= right) {
-        
-            for (int j = left; j <= right; j++) {
-                list.add(matrix[top][j]);
-            }
-            top++;
-
-            for (int i = top; i <= bottom; i++) {
-                list.add(matrix[i][right]);
-            }
-            right--;
-
-            if (top <= bottom) {
-                for (int j = right; j >= left; j--) {
-                    list.add(matrix[bottom][j]);
-                }
-                bottom--;
-            }
-
-            if (left <= right) {
-                for (int i = bottom; i >= top; i--) {
-                    list.add(matrix[i][left]);
-                }
-                left++;
+    public boolean searchMatrix(int[][] matrix, int target) {
+        int row = 0;
+        int col = matrix[0].length-1;
+        while(row < matrix.length && col >=0){
+            if(matrix[row][col] == target){
+                return true;
+            }else if(target > matrix[row][col]){
+                row++;
+            }else{
+                col--;
             }
         }
-
-        return list;
+        return false;
     }
 }
