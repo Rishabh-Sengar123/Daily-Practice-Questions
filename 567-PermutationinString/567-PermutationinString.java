@@ -1,30 +1,22 @@
-// Last updated: 9/30/2025, 10:59:59 PM
+// Last updated: 9/30/2025, 11:04:30 PM
 class Solution {
-    public boolean checkInclusion(String s1, String s2) {
-        if (s1.length() > s2.length()) return false;
+    public int characterReplacement(String s, int k) {
+        int[] count = new int[26];
+        int left = 0, maxFreq = 0, maxLength = 0;
 
-        int[] count1 = new int[26];
-        int[] count2 = new int[26];
+        for (int right = 0; right < s.length(); right++) {
+            char c = s.charAt(right);
+            count[c - 'A']++;
+            maxFreq = Math.max(maxFreq, count[c - 'A']);
 
-        
-        for (char c : s1.toCharArray()) {
-            count1[c - 'a']++;
-        }
-
-        int window = s1.length();
-
-        for (int i = 0; i < s2.length(); i++) {
-            count2[s2.charAt(i) - 'a']++;
-
-            if (i >= window) {
-                count2[s2.charAt(i - window) - 'a']--;
+            while ((right - left + 1) - maxFreq > k) {
+                count[s.charAt(left) - 'A']--;
+                left++;
             }
 
-            if (Arrays.equals(count1, count2)) {
-                return true;
-            }
+            maxLength = Math.max(maxLength, right - left + 1);
         }
 
-        return false;
+        return maxLength;
     }
 }
