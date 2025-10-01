@@ -1,4 +1,4 @@
-// Last updated: 10/1/2025, 3:05:13 PM
+// Last updated: 10/1/2025, 3:05:29 PM
 public class Solution {
     public static String getEncryptedString(String s, int k) {
         int n = s.length();
