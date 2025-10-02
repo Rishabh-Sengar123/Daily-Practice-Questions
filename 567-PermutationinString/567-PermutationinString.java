@@ -1,19 +1,29 @@
-// Last updated: 9/30/2025, 11:09:18 PM
+// Last updated: 10/2/2025, 2:36:43 PM
+import java.util.Arrays;
+
 class Solution {
-    public int longestOnes(int[] nums, int k) {
-        int left = 0, zeroCount = 0, maxLen = 0;
+    public boolean checkInclusion(String s1, String s2) {
+        int n = s1.length();
+        int m = s2.length();
 
-        for (int right = 0; right < nums.length; right++) {
-            if (nums[right] == 0) zeroCount++;
+        if (n > m) return false;
 
-            while (zeroCount > k) {
-                if (nums[left] == 0) zeroCount--;
-                left++;
+        
+        char[] arr1 = s1.toCharArray();
+        Arrays.sort(arr1);
+        String sortedS1 = new String(arr1);
+
+        for (int i = 0; i <= m - n; i++) {
+            String sub = s2.substring(i, i + n); 
+            char[] arr2 = sub.toCharArray();
+            Arrays.sort(arr2);
+            String sortedSub = new String(arr2);
+
+            if (sortedS1.equals(sortedSub)) {
+                return true; 
             }
-
-            maxLen = Math.max(maxLen, right - left + 1);
         }
 
-        return maxLen;
+        return false;
     }
 }
