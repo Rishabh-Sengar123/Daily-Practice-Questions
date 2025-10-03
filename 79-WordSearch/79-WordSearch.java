@@ -1,41 +1,20 @@
-// Last updated: 10/3/2025, 8:08:56 PM
+// Last updated: 10/3/2025, 9:12:58 PM
 class Solution {
-    public boolean exist(char[][] board, String word) {
-        int rows = board.length;
-        int cols = board[0].length;
-
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < cols; j++) {
-                if (dfs(board, word, i, j, 0)) {
-                    return true;
-                }
-            }
-        }
-        return false;
+    public List<List<Integer>> combine(int n, int k) {
+        List<List<Integer>> result = new ArrayList<>();
+        backtrack(1, n, k, new ArrayList<>(), result);
+        return result;
     }
 
-    private boolean dfs(char[][] board, String word, int i, int j, int index) {
-     
-        if (index == word.length()) {
-            return true;
+    private void backtrack(int start, int n, int k, List<Integer> path, List<List<Integer>> result) {
+        if (path.size() == k) {
+            result.add(new ArrayList<>(path));
+            return;
         }
-
-        if (i < 0 || i >= board.length || j < 0 || j >= board[0].length 
-            || board[i][j] != word.charAt(index)) {
-            return false;
+        for (int i = start; i <= n; i++) {
+            path.add(i);
+            backtrack(i + 1, n, k, path, result);
+            path.remove(path.size() - 1);
         }
-
-        char temp = board[i][j];
-        board[i][j] = '#';
-
-        boolean found = dfs(board, word, i + 1, j, index + 1) ||
-                        dfs(board, word, i - 1, j, index + 1) ||
-                        dfs(board, word, i, j + 1, index + 1) ||
-                        dfs(board, word, i, j - 1, index + 1);
-
-    
-        board[i][j] = temp;
-
-        return found;
     }
 }
