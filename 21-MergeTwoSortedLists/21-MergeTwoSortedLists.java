@@ -1,4 +1,4 @@
-// Last updated: 8/3/2025, 10:43:47 AM
+// Last updated: 10/3/2025, 10:55:28 PM
 class Solution {
     public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
         ListNode dummy = new ListNode();
