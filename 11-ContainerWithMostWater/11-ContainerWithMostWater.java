@@ -1,11 +1,11 @@
-// Last updated: 10/4/2025, 2:59:50 PM
+// Last updated: 10/4/2025, 3:00:33 PM
 class Solution {
     public int maxArea(int[] height) {
         int ans = 0;
         int left = 0;
         int right = height.length-1;
         int max = Integer.MIN_VALUE;
-        while(left<right){
+        while(left<=right){
             int k = right-left;
             
             max = Math.min(height[left], height[right]) * k;
