@@ -1,47 +1,51 @@
-// Last updated: 10/5/2025, 4:06:24 PM
-import java.util.Arrays;
+// Last updated: 10/5/2025, 4:09:04 PM
+import java.util.*;
 
 class Solution {
-    public int[] fullBloomFlowers(int[][] flower, int[] people) {
-        int n = flower.length;
-        int[] start = new int[n];
-        int[] end = new int[n];
-        
-        for (int i = 0; i < n; i++) {
-            start[i] = flower[i][0];
-            end[i] = flower[i][1];
+    public int[] fullBloomFlowers(int[][] flowers, int[] people) {
+        int[] ans = new int[people.length];
+        int[] start = new int[flowers.length];
+        int[] end = new int[flowers.length];
+
+        for (int i = 0; i < flowers.length; i++) {
+            start[i] = flowers[i][0];
+            end[i] = flowers[i][1];
         }
-        
+
         Arrays.sort(start);
         Arrays.sort(end);
-        
-        int[] ans = new int[people.length];
+
         for (int i = 0; i < people.length; i++) {
-            
-            int started = upperBound(start, people[i]);
-          
-            int ended = lowerBound(end, people[i]);
-            ans[i] = started - ended;
+            int starter = first(start, people[i]);
+            int ended = second(end, people[i]);
+            ans[i] = starter - ended;
         }
+
         return ans;
     }
-    
-   
-    public int upperBound(int[] arr, int target) {
+
+    public int first(int[] arr, int target) {
         int left = 0, right = arr.length;
-        while (left < right) {
-            int mid = left + (right - left) / 2;
-            if (arr[mid] <= target) left = mid + 1;
-            else right = mid;
+        while(left < right){
+            int mid = left + (right-left)/2;
+            if(arr[mid]<=target){
+                left = mid+1;
+            }else{
+                right = mid;
+            }
         }
         return left;
     }
-    public int lowerBound(int[] arr, int target) {
+
+    public int second(int[] arr, int target) {
         int left = 0, right = arr.length;
-        while (left < right) {
-            int mid = left + (right - left) / 2;
-            if (arr[mid] < target) left = mid + 1;
-            else right = mid;
+        while(left < right){
+            int mid = left + (right-left)/2;
+            if(arr[mid]<target){
+                left = mid+1;
+            }else{
+                right = mid;
+            }
         }
         return left;
     }
