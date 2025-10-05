@@ -1,23 +1,20 @@
-// Last updated: 10/5/2025, 5:23:38 PM
+// Last updated: 10/5/2025, 5:45:49 PM
 class Solution {
-    public int numSubarrayProductLessThanK(int[] nums, int k) {
-        if(k<=1){
-            return 0;
-        }
+    public int minSubArrayLen(int target, int[] nums) {
         int left = 0;
         int right = 0;
-        int product = 1;
-        int count = 0;
+        int sum = 0;
+        int count = Integer.MAX_VALUE;
         for(right=0; right<nums.length; right++){
+            sum += nums[right];
 
-            product *= nums[right];
-
-            while(product>=k && left <= right){
-                product /= nums[left];
+            while(sum >= target){
+                count = Math.min(right - left + 1, count);
+                sum -= nums[left];
                 left++;
             }
-            count += (right - left + 1);
+            
         }
-        return count;
+        return (count == Integer.MAX_VALUE) ? 0 : count;
     }
 }
