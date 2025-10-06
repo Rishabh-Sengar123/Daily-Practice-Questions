@@ -1,15 +1,18 @@
-// Last updated: 10/6/2025, 4:26:32 PM
+// Last updated: 10/6/2025, 4:33:41 PM
+import java.util.*;
+
 class Solution {
-    public int partitionArray(int[] nums, int k) {
-        Arrays.sort(nums);
-        int count = 1;
-        int start = nums[0];
-        for(int i=1; i<nums.length; i++){
-            if(nums[i] - start > k){
-                count++;
-                start = nums[i];
-            }
+    public List<List<String>> groupAnagrams(String[] strs) {
+        Map<String, List<String>> map = new HashMap<>();
+        
+        for (String s : strs) {
+            char[] ch = s.toCharArray();
+            Arrays.sort(ch);
+            String key = new String(ch);
+            
+            map.computeIfAbsent(key, k -> new ArrayList<>()).add(s);
         }
-        return count;
+        
+        return new ArrayList<>(map.values());
     }
 }
