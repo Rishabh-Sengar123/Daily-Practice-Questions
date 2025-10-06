@@ -1,35 +1,39 @@
-// Last updated: 10/6/2025, 1:14:42 PM
-class Solution {
-    public int getMaximumGold(int[][] grid) {
-        int maxGold = 0;
-        int m = grid.length;
-        int n = grid[0].length;
+// Last updated: 10/6/2025, 1:24:33 PM
+import java.util.*;
 
-        for (int i = 0; i < m; i++) {
-            for (int j = 0; j < n; j++) {
-                if (grid[i][j] != 0) {
-                    maxGold = Math.max(maxGold, dfs(grid, i, j));
+class Solution {
+    private int count = 0;
+
+    public int countArrangement(int n) {
+        // Precompute valid candidates for each position i (1-indexed)
+        @SuppressWarnings("unchecked")
+        List<Integer>[] candidates = new ArrayList[n + 1];
+        for (int i = 1; i <= n; i++) {
+            candidates[i] = new ArrayList<>();
+            for (int num = 1; num <= n; num++) {
+                if (num % i == 0 || i % num == 0) {
+                    candidates[i].add(num);
                 }
             }
         }
-        return maxGold;
+
+        boolean[] used = new boolean[n + 1];
+        backtrack(n, 1, used, candidates);
+        return count;
     }
 
-    private int dfs(int[][] grid, int i, int j) {
-        // Base condition: out of bounds or cell is empty
-        if (i < 0 || i >= grid.length || j < 0 || j >= grid[0].length || grid[i][j] == 0) {
-            return 0;
+    private void backtrack(int n, int pos, boolean[] used, List<Integer>[] candidates) {
+        if (pos > n) {
+            count++;
+            return;
         }
 
-        int gold = grid[i][j];
-        grid[i][j] = 0; // mark as visited
-
-        int up = dfs(grid, i - 1, j);
-        int down = dfs(grid, i + 1, j);
-        int left = dfs(grid, i, j - 1);
-        int right = dfs(grid, i, j + 1);
-
-        grid[i][j] = gold; // backtrack (unmark)
-        return gold + Math.max(Math.max(up, down), Math.max(left, right));
+        for (int num : candidates[pos]) {
+            if (!used[num]) {
+                used[num] = true;
+                backtrack(n, pos + 1, used, candidates);
+                used[num] = false;
+            }
+        }
     }
 }
