@@ -1,4 +1,4 @@
-// Last updated: 10/6/2025, 1:24:33 PM
+// Last updated: 10/6/2025, 1:24:48 PM
 import java.util.*;
 
 class Solution {
@@ -6,7 +6,7 @@ class Solution {
 
     public int countArrangement(int n) {
         // Precompute valid candidates for each position i (1-indexed)
-        @SuppressWarnings("unchecked")
+        
         List<Integer>[] candidates = new ArrayList[n + 1];
         for (int i = 1; i <= n; i++) {
             candidates[i] = new ArrayList<>();
