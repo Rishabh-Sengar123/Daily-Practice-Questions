@@ -1,21 +1,50 @@
-// Last updated: 9/27/2025, 12:18:05 AM
+// Last updated: 10/8/2025, 10:50:03 AM
 class Solution {
-    public int findJudge(int n, int[][] trust) {
+    private static final int SIZE = 9;
 
-        int [] trustIn = new int[n + 1];
-        int [] trustOut = new int[n + 1];
+    public void solveSudoku(char[][] board) {
+        solve(board);
+    }
 
-        for (int [] arr : trust){
-            trustIn[arr[1]]++;
-            trustOut[arr[0]]++;
-        }
+    private boolean solve(char[][] board) {
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE; j++) {
+                if (board[i][j] == '.') {
+                    for (char num = '1'; num <= '9'; num++) {
+                        if (isSafe(board, i, j, num)) {
+                            board[i][j] = num;
 
-        for(int i =1; i <= n; i++){
-            if(trustIn[i] == n - 1 && trustOut[i] == 0){
-                return i;
+                            if (solve(board)) {
+                                return true;
+                            }
+
+                            board[i][j] = '.';
+                        }
+                    }
+                    return false;
+                }
             }
         }
+        return true;
+    }
+
+    private boolean isSafe(char[][] board, int row, int col, char num) {
         
-        return -1;
+        for (int i = 0; i < SIZE; i++) {
+            if (board[row][i] == num || board[i][col] == num)
+                return false;
+        }
+
+        
+        int startRow = row - row % 3;
+        int startCol = col - col % 3;
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (board[startRow + i][startCol + j] == num)
+                    return false;
+            }
+        }
+
+        return true;
     }
 }
