@@ -1,12 +1,16 @@
-// Last updated: 8/3/2025, 9:55:07 AM
+// Last updated: 10/11/2025, 10:40:31 PM
 class Solution {
     public int singleNumber(int[] nums) {
-        int num = 0;
-        for(int i =0 ; i< nums.length ; i++){
-
-                    num ^= nums[i];
-              
+        Map<Integer, Integer> freq = new HashMap<>();
+        for(int num : nums){
+            freq.put(num, freq.getOrDefault(num, 0)+1);
         }
-        return num;
+        for(int i=0; i<nums.length ; i++){
+            int count = freq.getOrDefault(nums[i], 0);
+            if(count == 1){
+                return nums[i];
+            }
+        }
+        return 0;
     }
 }
