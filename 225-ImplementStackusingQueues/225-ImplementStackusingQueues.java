@@ -1,36 +1,32 @@
-// Last updated: 10/25/2025, 2:56:18 PM
-import java.util.LinkedList;
-import java.util.Queue;
+// Last updated: 10/25/2025, 2:59:09 PM
+import java.util.*;
 
-class MyStack {
-    private Queue<Integer> q1;
-    private Queue<Integer> q2;
+class Solution {
+    public int[] asteroidCollision(int[] asteroids) {
+        Stack<Integer> stack = new Stack<>();
 
-    public MyStack() {
-        q1 = new LinkedList<>();
-        q2 = new LinkedList<>();
-    }
-
-    public void push(int x) {
-        q2.add(x);
-        while (!q1.isEmpty()) {
-            q2.add(q1.remove());
+        for (int a : asteroids) {
+            boolean destroyed = false;
+            while (!stack.isEmpty() && a < 0 && stack.peek() > 0) {
+                if (Math.abs(a) > stack.peek()) {
+                    stack.pop();
+                    continue;
+                } else if (Math.abs(a) == stack.peek()) {
+                    stack.pop();
+                }
+                destroyed = true;
+                break;
+            }
+            if (!destroyed) {
+                stack.push(a);
+            }
         }
-        Queue<Integer> temp = q1;
-        q1 = q2;
-        q2 = temp;
-    }
 
-    public int pop() {
-        return q1.remove();
-    }
+        int[] result = new int[stack.size()];
+        for (int i = stack.size() - 1; i >= 0; i--) {
+            result[i] = stack.pop();
+        }
 
-    public int top() {
-        return q1.peek();
-    }
-
-    public boolean empty() {
-        return q1.isEmpty();
+        return result;
     }
 }
-
