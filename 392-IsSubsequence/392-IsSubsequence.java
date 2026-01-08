@@ -1,4 +1,4 @@
-// Last updated: 1/8/2026, 9:36:23 AM
+// Last updated: 1/8/2026, 9:39:24 AM
 1class Solution {
 2    //Use Wrapper dp to store null as default data 
 3    //Three value can be store true, false, null.
@@ -27,3 +27,7 @@
 26        return dp[n][m];
 27    }
 28}
+29
+30//Outcome if we use primitive boolean class it again - again call the resursiion instead of using memoization so this code is far better than primitive boolean[] 
+31
+32//Wrapper - Boolean[]
