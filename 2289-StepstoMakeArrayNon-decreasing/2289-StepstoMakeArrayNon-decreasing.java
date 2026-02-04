@@ -1,4 +1,4 @@
-// Last updated: 2/4/2026, 6:56:07 PM
+// Last updated: 2/4/2026, 6:56:17 PM
 1class Solution {
 2        public int totalSteps(int[] A) {
 3        int n = A.length, res = 0, j = -1;
