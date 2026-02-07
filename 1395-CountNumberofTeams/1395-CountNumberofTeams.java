@@ -1,30 +1,30 @@
-// Last updated: 1/20/2026, 2:53:29 PM
+// Last updated: 2/7/2026, 6:32:29 PM
 1class Solution {
 2    public int numTeams(int[] rating) {
 3        int total = 0;
-4        for(int j=1; j<rating.length-1;j++){
-5            int leftSmall = 0;
-6            int leftBig = 0;
-7            int rightSmall = 0;
-8            int rightBig = 0;
-9            for(int i=0; i<j; i++){
-10                if(rating[i]<rating[j]){
-11                    leftSmall++;
+4        for(int i=1; i<rating.length-1; i++){
+5            int ls = 0;
+6            int lb = 0;
+7            int rs = 0;
+8            int rb = 0;
+9            for(int j=0; j<i; j++){
+10                if(rating[j]>rating[i]){
+11                    lb++;
 12                }else{
-13                    leftBig++;
+13                    ls++;
 14                }
 15            }
-16            for(int k=j+1; k<rating.length; k++){
-17                if(rating[k]<rating[j]){
-18                    rightSmall++;
+16            for(int j=i+1; j<rating.length ; j++){
+17                if(rating[i]>rating[j]){
+18                    rs++;
 19                }else{
-20                    rightBig++;
+20                    rb++;
 21                }
 22            }
-23            int inc = leftSmall * rightBig;
-24            int dec = leftBig * rightSmall;
+23            int a = lb*rs;
+24            int b = ls*rb;
 25
-26            total += inc + dec;
+26            total += a + b;
 27        }
 28        return total;
 29    }
